@@ -1,6 +1,6 @@
 # AllowCompSpawn
 
-A [NeosModLoader](https://github.com/zkxs/NeosModLoader) mod for [Neos VR](https://neos.com/) that allows spawning worker inspectors from held syncrefs unconditonaly
+A [NeosModLoader](https://github.com/zkxs/NeosModLoader) mod for [Neos VR](https://neos.com/) that allows spawning worker inspectors from held syncrefs unconditionally
 
 
 ## Installation
