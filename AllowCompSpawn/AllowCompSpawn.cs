@@ -1,23 +1,20 @@
-﻿using HarmonyLib;
-using NeosModLoader;
+﻿using BepInEx;
+using BepInEx.NET.Common;
+using BepInExResoniteShim;
 using FrooxEngine;
+using HarmonyLib;
 
 namespace AllowCompSpawn
 {
-    public class AllowCompSpawn : NeosMod
+    [ResonitePlugin(PluginMetadata.GUID, PluginMetadata.NAME, PluginMetadata.VERSION, PluginMetadata.AUTHORS, PluginMetadata.REPOSITORY_URL)]
+    [BepInDependency(BepInExResoniteShim.PluginMetadata.GUID)]
+    public class AllowCompSpawn : BasePlugin
     {
-        public override string Name => "AllowCompSpawn";
-        public override string Author => "eia485";
-        public override string Version => "1.0.0";
-        public override string Link => "https://github.com/EIA485/NeosAllowCompSpawn/";
-        
-        public override void OnEngineInit()
-        {
-            Harmony harmony = new Harmony("net.eia485.allowCompSpawn");
-            harmony.PatchAll();
-        }
 
-        [HarmonyPatch(typeof(ReferenceProxy), "Construct")]
+        public override void Load() => HarmonyInstance.PatchAll();
+
+
+        [HarmonyPatch(typeof(ReferenceProxy), nameof(ReferenceProxy.Construct))]
         private class allowCompSpawnPatch
         {
             public static void Prefix(ref bool downSpawnInstance)
